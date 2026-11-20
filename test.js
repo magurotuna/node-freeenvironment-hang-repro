@@ -10,7 +10,7 @@ const rows = []
 let failed = false
 
 console.log(`Node.js ${process.version}, ${process.platform}-${process.arch}`)
-for (const mode of ['threadpool', 'immediate']) {
+for (const mode of ['threadpool', 'immediate', 'deferred']) {
   const result = spawnSync(
     process.execPath,
     [path.join(__dirname, 'repro.js'), mode],
