@@ -1,0 +1,8 @@
+{
+  "name": "node-freeenvironment-hang-repro",
+  "private": true,
+  "scripts": {
+    "install": "node-gyp rebuild",
+    "test": "node test.js"
+  }
+}
