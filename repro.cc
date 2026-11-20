@@ -74,8 +74,10 @@ void OnCheck(uv_check_t* handle) {
   uv_check_stop(handle);
   // uv_run() returns after this iteration, without polling again.
   uv_stop(handle->loop);
+  // Pass the location: Node.js 24 on Windows does not export the default,
+  // v8::SourceLocation::Current().
   platform->GetForegroundTaskRunner(v8::Isolate::GetCurrent())
-      ->PostTask(std::make_unique<FreeTask>());
+      ->PostTask(std::make_unique<FreeTask>(), v8::SourceLocation());
 }
 
 void FreeLater(const v8::FunctionCallbackInfo<v8::Value>& args) {
